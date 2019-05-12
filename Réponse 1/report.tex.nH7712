@@ -1,0 +1,117 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[UTF8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french,english]{babel}
+\usepackage{layout}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage[top=1cm, bottom=1.5cm, left=1cm, right=1cm]{geometry}
+\title{INFO-F-404 - Parallel exhaustive search : Report}
+\author{Akira Baes, Cédric Strebelle}
+\date\today
+\begin{document}
+\selectlanguage{english}
+\maketitle
+\setlength{\parskip}{1cm plus4mm minus3mm}
+\section{Implementation}
+To find conflicts in sha1 hashing, we have to compare every MessageA's (in the set of possible messages) sha1 with the rest of the message space (MessageB)'s sha1. The method we used was to synchronize every process on the same MessageA. Then each process receives an equal part of the MessageB space and compares hash of each element with the MessageA's hash. If there is a match, the result is stored in a file, with all conflicting hashed messages for the current compared hash adjacent. When a process has compared all its MessageB's hash set, it waits for the others to finish. By doing that, the outputs of the conflicts are grouped together by hash as requested by the requirements.\\
+\indent  The first process, of id 0, read the output files to gather the hash already found, and to avoid doing twice the comparison and making duplicate in the results. Because of the potential size of the outputs, the use of a file was preferred, instead of storing it the RAM. The process continues with the next hashed message to compare with the hash of the others once it's done, and if the next hash isn't identical to one already found (in this case, it would already have been written in the output and we would skip ahead one MessageA).\\
+\indent There are two set of parameters for the program; a kamikaze ''mode'' which try all the possible conflicts on all possible messages of 16 bytes, for the 64 least significant bits of the hash, before crashing or being stopped by hydra (after five hours), and a regular ''mode'' which searches in a smaller space and has to stop before the defined time. For the regular mode, the biggest message size possible was seven bytes. This limit was found by running the kamikaze mode to its time limit of 5h on hydra, giving a superior bound of bytes we can examine.
+\section{Protocol}
+When a process finishes its comparison on a hash, it sends a message in the form of a bool to all the others to signal it has finished. It then waits until all the others send a message as well, so that they can prepare to advance to the incrementation of the MessageA for the next hash to compare. The messages sent are 0 or 1, for ''no collision found'' and ''collision found''. We didn't use a barrier here because in addition to synchronizing each process on the same hash, this procedure tells to the process 0 if it must put a separator in the result file to indicate the end of a group of results (all the conflicts for a same hash) or not, thus writing the MessageA at the end of the group only if there were collisions found. We expect MPI's Recv implementation to have a buffer big enough to contain bools.\\
+\indent To advance to the next MessageA, each process has to wait for an authorisation message by the process 0 which will be in charge of reading in the files to check if the next hash is part of a previous collision group or not. This is to avoid having processes checking themselves and then writing their own hash when they find a collision, causing trouble if a different process started later and read the current hash, seeing that it was already researched, and skipping one step ahead. The process 0 sends either 0 to skip one MessageA or 1 to use it. This verification prevent that all the process compare twice the same hashed value with two different messages.\\
+\indent When a process finds a conflict, it writes it down directly in the output file. Each process can find a different number of collisions, at different times, so we decided to use \emph{MPI\_File\_write\_shared} to solve all concurrency problems on writings. If we used a normal writing, some could happen at the same time and would either merge or replace eachother, resulting in lost data. As our messages are quite short, we expect the implementation of the shared file pointer to be able to buffer them.
+\begin{center}
+\includegraphics[width=300pt,keepaspectratio]{sequence.png}
+\end{center}
+\section{Performances}
+\indent A first approach to collision research would work in $O(B^2)$. As such, we call the sha1 function check for each MessageA, and for each of the rest of the MessageB $((256^B)/2*((256^B)-1))$, minus the MessageA that were part of an earlier set of MessageB $(((256^B)-\#collisions)/2*((256^B)-1))$. However this comes at the cost of reading in a file for each MessageA, for \#collisions\_groups. If B is big, this is avantageous.\\
+\indent We divide the research space for 16 processors, which only speeds up the reseach by a factor of 16 by reducing the space of MessageB (as we still do check the full MessageA space).
+To predict the amount of collisions, we could redefine our problem as the anniversary problem. The space defined by B bytes $(256^B)$ could represent $p$ the number of people the anniversary problem, the space defined by n $(2^n)$ being $D$ the amount of days in a year. The expected amount of collisions for a given B and n is then $p(1-(1-1/D)^(p-1))$. This is more or less 1 for $p=sqrt(D)=sqrt(2^n)=2^{32}$, meaning $p=(256^{B})=(2^{3*B})=8^{32/3}=8^{10.666...}$ for $N=2^{64}$, telling us that to expect one collision we would need to search for around 11 bytes. We can only reach 6 to 7 bytes with our program, so to find collisions, we would have to reduce the amount of LSb (Least Significant bits) used for the collisions to match (meaning $p=256^{6}=2^{6*8}=2^{48}=sqrt(D)=2^{n/2} => n=6*8*2=$ is the highest LSB we can search in with the expectations of a collision). \\
+\section{Difficulties}
+\indent Concurrency was a difficult task to overcome. Our first version wrote in two separate files successively to avoid reading a file that hadn't finished writing. However, we still had two conflicts sources: We supposed that processes would naturally synchronize as their searching spaces were roughly equal, but some processes started writing several hash values in advance with small B spaces that could be filled quickly, making processes that verified those values skip some hash values. We fixed this issue by making the processes synchronize once they finished a space, which create some idle time, and we put all the reading accesses on the Processor 0 and made the other processes wait for the read to complete before starting to write again. We supposed that writes were atomic, but some entries overwrote on others, making them disappear and taking with them collision entries. We struggled to find a way to implement a mutex between processes, until we tried to use \emph{MPI\_File\_write\_shared} which seems to permit concurrent writes on a shared file.\\
+\indent Defining the partitioned search space correctly was important to find all of the collisions in a given space. Until late in the project, the calculations to partition the space were wrong, because we were using a custom implementation of Big Int based on two uint64, and dividing then multiplying the space in the calculation gave us a gap. This gap cost us a lot of time, because we had to relaunch our tests late in the project. \\
+
+
+\section{Results}
+Our results vary as sometimes did output the search as it was going, slowing down a lot the research. Some of the results shown are from an older version of the program, as we couldn't get tests done later on. We are not sure if the numbers shown are correct, as they seem outlandish.
+./collisionSearch -b 16 -n 64\\
+ID:12 quarter 15 Current message: 00000000000000000000000000000000 - (compared with c00000000000000000000001149cc322 ) ; time: 13485 s\\
+ID:8 quarter 11 Current message: 00000000000000000000000000000000 - (compared with 800000000000000000000000ca9a4f4c ) ; time: 9885.01 s\\
+ID:1 quarter 18 Current message: 00000000000000000000000000000000 - (compared with 1000000000000000000000014744c3a3 ) ; time: 16185 s\\
+ID:3 quarter 19 Current message: 00000000000000000000000000000000 - (compared with 3000000000000000000000015d975fcb ) ; time: 17085 s\\
+ID:0 quarter 19 Current message: 00000000000000000000000000000000 - (compared with 0000000000000000000000015dff3ddd ) ; time: 17085 s\\
+ID:10 quarter 14 Current message: 00000000000000000000000000000000 - (compared with a00000000000000000000001024b2e3c ) ; time: 12585 s\\
+ID:6 quarter 15 Current message: 00000000000000000000000000000000 - (compared with 6000000000000000000000011486a217 ) ; time: 13485 s\\
+ID:5 quarter 15 Current message: 00000000000000000000000000000000 - (compared with 50000000000000000000000114847e66 ) ; time: 13485 s\\
+ID:2 quarter 19 Current message: 00000000000000000000000000000000 - (compared with 2000000000000000000000015d19db01 ) ; time: 17085 s\\
+ID:14 quarter 16 Current message: 00000000000000000000000000000000 - (compared with e0000000000000000000000126e81f73 ) ; time: 14385 s\\
+ID:15 quarter 16 Current message: 00000000000000000000000000000000 - (compared with f0000000000000000000000126eec031 ) ; time: 14385 s\\
+ID:4 quarter 15 Current message: 00000000000000000000000000000000 - (compared with 40000000000000000000000114d85262 ) ; time: 13485 s\\
+ID:11 quarter 17 Current message: 00000000000000000000000000000000 - (compared with b0000000000000000000000139bdfe7f ) ; time: 15285 s\\
+ID:9 quarter 17 Current message: 00000000000000000000000000000000 - (compared with 90000000000000000000000139892aa3 ) ; time: 15285 s\\
+ID:1 quarter 19 Current message: 00000000000000000000000000000000 - (compared with 100000000000000000000001597bd862 ) ; time: 17085 s\\
+ID:7 quarter 15 Current message: 00000000000000000000000000000000 - (compared with 70000000000000000000000114869ab1 ) ; time: 13485 s\\
+ID:13 quarter 16 Current message: 00000000000000000000000000000000 - (compared with d0000000000000000000000127098344 ) ; time: 14385 s\\
+Based on the ID=0, (t=17085.3 s = 4h45)\\
+MessageA = 00000000000000000000000000000000 = 0\\
+MessageB = 0000000000000000000000015dff3ddd = 5871975901 = $2^32.45...$ comparisons made at least (?)\\
+
+./collisionSearch -b 7 -n 64
+Did not finish after 5 hours
+The last values outputed (by quarter hour)
+ID:2 quarter 19 Current message: 00000000000b37 - (compared with 000000002a747e ) ; time: 17085 s
+ID:0 quarter 19 Current message: 00000000000b3a - (compared with 00000000000b3c ) ; time: 17086 s
+ID:3 quarter 19 Current message: 00000000000b41 - (compared with 00000000300926 ) ; time: 17086.4 s
+ID:1 quarter 19 Current message: 00000000000b42 - (compared with 00000000100a8f ) ; time: 17086.2 s
+ID:8 quarter 18 Current message: 00000000000b78 - (compared with 000000008005bd ) ; time: 16185.9 s
+ID:9 quarter 18 Current message: 00000000000b7b - (compared with 000000009b4a00 ) ; time: 16185 s
+ID:10 quarter 11 Current message: 00000000000b84 - (compared with 00000000a8f640 ) ; time: 9885.01 s
+ID:4 quarter 20 Current message: 00000000000bc7 - (compared with 000000004fe425 ) ; time: 17985 s
+ID:7 quarter 20 Current message: 00000000000bc7 - (compared with 000000007ff979 ) ; time: 17985 s
+ID:5 quarter 20 Current message: 00000000000bc8 - (compared with 0000000050081a ) ; time: 17988 s
+ID:6 quarter 20 Current message: 00000000000bc8 - (compared with 0000000060075e ) ; time: 17987.3 s
+ID:14 quarter 20 Current message: 00000000000bc8 - (compared with 00000000e00179 ) ; time: 17986.5 s
+ID:15 quarter 20 Current message: 00000000000bc8 - (compared with 00000000f000bc ) ; time: 17987.6 s
+ID:12 quarter 20 Current message: 00000000000bc8 - (compared with 00000000c6dcc5 ) ; time: 17985 s
+ID:13 quarter 20 Current message: 00000000000bc9 - (compared with 00000000d00236 ) ; time: 17987.3 s
+
+Message space = $256^7=2^56$ (7 bytes)
+
+Based on the ID=0, (t=17086 s = 4h45)
+MessageA = 00000000000b3a = 2874 <-Impossible? He would have at least checked $2^56/16$ values to get to the second message
+MessageB = 00000000000b3c = 2876
+Messages compared = $256^7$+$256^7-1$+...+$256^7-2874$ = 
+
+Based on the ID=13, (t=17987.3 s = 4h59)
+MessageA = 00000000000bc9 = 3017
+MessageB = 00000000d00236 = 13632054
+
+./collisionSearch -b 6 -n 64
+Process 3 : 447.33 sec
+Process 2 : 447.38 sec
+Process 1 : 446.94 sec
+Process 0 : 411.19 sec
+Process 9 : 447.27 sec
+Process 8 : 447.23 sec
+Process 11 : 446.35 sec
+Process 10 : 442.24 sec
+Process 15 : 441.47 sec
+Process 13 : 447.12 sec
+Process 12 : 447.39 sec
+Process 14 : 447.35 sec
+Process 4 : 444.96 sec
+Process 7 : 446.88 sec
+Process 5 : 447.23 sec
+Process 6 : 441.73 sec
+No collision found
+
+Search space for MessageB (borders included)= $[START;END]$ \\
+i is the index of the MessageA, nb is the amount of processors (16), id is the id of the processor (0->15)\\
+max is the size of the full MessageSpace-1 \\
+(-1 because we have an "uint128" which cannot contain the max space for the Kamikaze mode)\\
+START = $i+(max-i)/nb*id+1 + ((max-i)\%nb)*id/nb$\\
+END = $i+(max-i)/nb*(id+1) + ((max-i)\%nb)*(id+1)/nb$\\
+(remainders had to be added because we cannot multiply before the integer division, having limited bits)
+
+\end{document}

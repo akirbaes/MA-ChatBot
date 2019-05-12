@@ -1,0 +1,17 @@
+"DO IT" tutorial for Slack bot with python
+https://www.fullstackpython.com/blog/build-first-slack-bot-python.html
+
+Someone's first steps with AIML python (https://en.wikipedia.org/wiki/AIML)
+https://iniy.org/?p=68
+
+
+Taxonomy of question
+http://www.isi.edu/natural-language/projects/webclopedia/Taxonomy/taxonomy_toplevel.html
+
+ChatScript
+https://www.gamasutra.com/view/feature/134675/beyond_façade_pattern_matching_.php?page=5
+Plus links references at the bottom
+Wordnet is used with chatscript: https://wordnet.princeton.edu
+
+I think Suzette can be tested here?:https://www.chatbots.org/chatbot/suzette/
+Search term: suzette bot

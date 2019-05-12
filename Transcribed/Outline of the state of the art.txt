@@ -1,0 +1,35 @@
+Chatbot can be created in a tool, but under the tool the logic used are:
+
+AIML
+ChatScript
+
+etc. to input utterances https://chatbotsmagazine.com/deep-logic-for-support-ai-chatbots-c7fb83518c90
+Question-answer pairs
+
+Derive meaning from utterances [Natural Language]
+-> find the corresponding answer
+
+The difficulty here becomes building a decision tree for more complex problems
+But this depends on the problem to solve
+Eg. answer a question
+or provide customer service
+
+A conversation is more difficult
+There are ways to fill in the conversation utterances via big databases of conversations
+Cleverbot etc. This approach requires a large amount of data.
+Results may vary, as those bots don't win prizes.
+Hand-crafted convresation bots are still the state of the art, but require a lot of specialised writing 
+It's an art form 
+
+
+For our project, must build a decisiontree https://chatbotsmagazine.com/chatbot-decision-trees-a42ed8b8cf32
+Game start
+Game flow	Player flow
+
+Apparently advanced services can have a lot of if-then logic that's impossible to hand-code
+So Deep Logic Networks are used (oxford exvisory is a product made with that)
+https://chatbotsmagazine.com/chatbot-decision-trees-a42ed8b8cf32
+
+
+Our ChatBot's logic would be based on game theory
+https://en.wikipedia.org/wiki/Game_theory

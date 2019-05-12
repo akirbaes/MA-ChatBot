@@ -1,0 +1,24 @@
+https://www.youtube.com/watch?v=PSY5BO624UU&ab_channel=AnimeSummer2015
+
+Creating the game->
+Chosing the game and giving its parameters
+"Creating the game" -> "Creating a game instance"
+
+public goods game
+https://en.wikipedia.org/wiki/Public_goods_game
+Focus on those
+
+In python:
+interface for public goods game
+Talking IA
+Choice IA
+Interface with for example their one
+
+The IA should demand orders,
+maybe a reason? not in this case
+will give infos when needed
+
+
+https://ai.vub.ac.be/courses/2012-2013/natural-language-processing
+
+https://www.dropbox.com/home/Akira%202018-2019/deliverables?preview=Chatbots+playing+games+thesis+preparatory+-+first+idea.docx

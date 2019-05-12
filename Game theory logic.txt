@@ -1,0 +1,33 @@
+http://di.ulb.ac.be/map/tlenaert/Home_Tom_Lenaerts/INFO-F-409_files/part%201%20Game%20theory%20basics.pdf
+
+Players: two players
+Actions: {Cooperate, Default}
+
+Table with CD, CC, DC, DD and the result for each player (+1,-1) (+0,+0) etc.
+
+The AI in this case just has to 
+Say what they want to do (before chosing)
+Say their choice (not particularly related to chatbot)
+
+With several matches, the AI can try to tell the player some stats
+We have to input the strategy ourselves (or build a strategy maker)
+
+
+Assymetric games can be made symmetric by giving 0 to the symmetric choices that aren't made
+or by doing averages (37)
+
+NASH EQ - if everyone follows same rules, end up in one equlibrium
+
+
+Decision step 1: form a believ of the other player's actions and preferences
+(based on game rules and past experience)
+Here: but we don't know the player itself? (why?)
+
+Take the best available action
+
+Several concepts like dominance, pareto...
+
+Those were notes of part 1 Game theory basics.pdf
+
+Follow the rest:
+http://di.ulb.ac.be/map/tlenaert/Home_Tom_Lenaerts/INFO-F-409.html

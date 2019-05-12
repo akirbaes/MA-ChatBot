@@ -1,0 +1,26 @@
+<aiml version="1.0.1" encoding="UTF-8">
+<!-- basic_prisonner.aiml -->
+
+    <category>
+        <pattern>BETRAY</pattern>
+        <template>betray</template>
+    </category>
+    
+    <category>
+        <pattern>STAY SILENT</pattern>
+        <template>
+        <random>
+            <li>betray</li>
+            <li>stay silent</li>
+        </random>
+        </template>
+    </category>
+	
+    <category>
+        <pattern>UNKNOWN</pattern>
+        <template>
+            <li>betray</li>
+        </template>
+    </category>
+    
+</aiml>

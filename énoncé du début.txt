@@ -1,0 +1,10 @@
+10. Chat bots playing strategic games (Tom Lenaerts)
+Last years there has been a revolution in the development chat bots that try to act like humans or learn about how people behave in chat sessions.  This technology incorporates a number of AI methods like natural language processing and machine learning.  It becomes not difficult to imagine that at some point we expect these bots to also perform simple tasks for us.  These tasks can be interacting with another chat bot, which may be a situation where there is a conflict of interest.  In this thesis project, you will expand an existing chatbot system (telegram for instance) so that the bots play a strategic game in place of a user chatting with the bot.  The question will be how people will use this system and what outcomes one can expect.
+References:
+
+1) introduction to chat bots e.g. https://tutorialzine.com/2016/11/introduction-to-chatbots
+2) telegram.org  api
+3) http://www.alicebot.org/aiml.html
+4) http://www.chatterbotcollection.com/
+5) http://www.emeraldinsight.com/doi/abs/10.1108/13673270510583018
+6) https://dl.acm.org/citation.cfm?id=1289206
