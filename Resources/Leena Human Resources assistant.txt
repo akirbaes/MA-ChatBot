@@ -1,0 +1,49 @@
+https://chatbotsmagazine.com/leena-automating-the-hr-helpdesk-adit-jain-9c0d3a6660ae
+Leena Human Resources Assistant
+8 modules:
+Onboarding, FAQ, Health and Wellness, Travel and Expense, HR services and Transactions, Performance management, Learning and Development.
+12 enterprises on annual plans 10 proof-of-concept
+
+Can intergrate into Slack or Workplace by Facebook 
+
+>Jain says when building bots, the team learned through its experience with Chatteron that it’s better to concentrate on a single subject because the underlying machine learning model gets better the more it’s used. 
+
+>[in HR] 80% of the questions cover similar topics, like vacation stuff, sick time, and expense reporting.
+
+NLP for variations of the same question 
+
+
+Each sub-flow in a module has their own metric
+Accuracy: answer user's question from FAQs
+How often they come back: 70~75%
+Messages exchanged, how much interaction
+Lengut of session: preferably short
+
+On error, human takes over
+
+>Creating a database of questions is easy — we have to translate an employee handbook into knowledge via an automated system. Still, there have to be humans who do a sanity check at the end.
+
+Large multinationals want serious and official personality
+Smaller media companies want funny and informal agent
+
+NLP in-house, ML/RNN system 
+Cloud: AWSn GCP, Azure, most on AWS 
+Virtual servers and standard database stack (noSQL and relational)
+Core on O-desk
+NLP in Python/NLP 
+NodeJS, search algorithms, microservices
+Google Assistant, Alexa, phone number, Slack, Workplace for FB
+
+
+Skype for Business
+Google Assistant and Alexa for car and home, not for office
+Large companies don't use Slack 
+Microsoft Team bot support should take over Skype 
+
+Recommends:
+X.AI for meetings
+Say we're at an early stage
+Hoogalit voice app teaching for alexa
+https://www.amazon.com/My-Class-Helper-Hoogalit/dp/B07BHTP4CJ
+
+

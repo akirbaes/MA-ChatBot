@@ -1,0 +1,40 @@
+https://chatbotsmagazine.com/edwin-ai-is-your-english-as-a-foreign-language-efl-tutor-dmitry-alekseev-and-dmitry-stavisky-40439d37cf3d
+English as Foreign Language (EFL)
+One-third the cost one-third the time of existing schools
+NLP, Machine learning, "nexest speech technologies", industry experience
+->personalized pedagogy and adaptive learning plans 
+Edwin
+Spanish, Japanese, Korean, Russian, Arabic, Hindi speakers
+Use via Facebook Messenger
+Evaluation time
+Vocabulary course, TOEFL, TOEIC
+50 practice tools like comparison of recorded pronunciation
+Backing by big companies, including Google Assistant investment
+
+Automate most of the repetitive tasks (th sound practice)
+Humans intervene for intricate learning and problem solving
+
+First had free-form input with NLP, but that was hard on users
+Moved to buttons
+
+Gets asked to translate words and phrases, but is discouraged as not in the context
+
+"All Turtles" gives lesson on virtual personality
+
+
+Back end AWS, Python, Postgres RDS
+Facebook Messenger 
+EC2
+AWS
+For NLP, Dialogflow
+Neo4j for knowledge graph
+
+
+Recommends: 
+Swell 
+Replica
+Google’s Dialogflow 
+
+Chatfuel  for prototyping and building experiences
+
+Edwin is a stateless machine with a graph structure to track the progress

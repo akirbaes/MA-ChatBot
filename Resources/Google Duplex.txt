@@ -1,0 +1,5 @@
+https://www.nytimes.com/2019/05/22/technology/personaltech/ai-google-duplex.html
+https://www.extremetech.com/extreme/291952-google-duplex-still-needs-a-lot-of-help-from-humans
+Google Duplex still relies on humans (for testing?)
+
+They say 25% humans, 15% AI with human help, rest is all AI
