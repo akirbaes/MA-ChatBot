@@ -1,0 +1,18 @@
+https://chatbotsmagazine.com/statsbot-to-track-your-business-metrics-an-interview-with-artyom-keydunov-5882dd1a35f
+is very profitable
+Track metrics
+Go look at the metrics across several sites and bring them back
+5 - 15 (advanced features) - 25 (custom features) $/month
+
+"People ask for funny stuff, and say things like “I hate you” and “I love you, i have missed you”. Also personal jokes — sometimes they troll it. People stop trolling after a while — everyone know it’s a bot and so not worth their emotional time."
+
+"For Slack, we try to incorporate as much as many user interfaces that we can — text, buttons to change a topic. Hard to do a bot that is all NLP, so many users like graphic interfaces to help themselves out."
+
+We use Polly (mostly for lunch) and Statsbot internally. Growbot is great. Xoom.AI bot, also the Polly bot. HuggingFace for a personal bot; it has push notification; more for teenagers — kind of like the Tomoguchi.
+
+Amir at Slack. The Betaworks guys. Vijay from Innovation Endeavors. Ben Brown from Howdy. Tom Hatfield from Message.ai.
+
+What can you tell us about your tech stack? Do you do NLP in-house, what external services do you like?
+"Ruby on Rails, on NodeJS for real-time networking. Python / Anaconda and R for data science, AWS and Docker, CoreOS and Fleet."
+
+"Use Stripe to charge users. Hotspot for CRM. We like MailChimp for marketing campaigns, Medium for blogs."

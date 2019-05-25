@@ -1,0 +1,26 @@
+https://chatbotsmagazine.com/howdy-and-botkit-an-interview-with-eric-soelzer-2051b88c33d1
+Automate team work.
+"Many Slack teams use Howdy to collect lunch orders, generate detailed progress reports, and make decision-making more transparent."
+Botkit: "Botkit Studio came for an easier way to construct conversations and interactions outside code — very tedious to write everything outside code. CMS for scripts and conversational flows."
+
+"Studio works with Botkit for conversation and flows. It also works with Wit, API.AI, and LUIS. NLP and hosting can be layers — all open source."
+
+Recommends: QZ app for Quartz News - "they are doing interesting things with news delivery in a messaging style. Try it on the iPhone."
+PlusPlus++
+Growbot, "interesting tool"
+"HBR bot for Slack is neat — it beams you news articles."
+Poncho
+"Trello and Jira have Slack bot integrations that are decent"
+Statsbot 
+"Microsoft LUIS. API.AI is great for voice stuff."
+
+"Bot builders should get set up with analytics tools as early as possible. There are many great options there. Dashbot, Botmetrics and Botanalytics are all solid. I have recently fallen in love with Glitch, which is something like Google Docs for javascript development. We use it to quickly host Botkit code for testing and fun."
+
+"Tom Hadfield of Message.io — a friend, did a YC startup, really gets interoperability and translation layers between services.""
+"Amir Shevat at Slack"
+"Ted Livingston and Sergio Silva from Kik"
+
+https://github.com/howdyai/botkit/tree/master/packages/botkit
+
+Microsoft Bot Framework
+https://dev.botframework.com/

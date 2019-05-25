@@ -1,0 +1,22 @@
+https://chatbotsmagazine.com/ivy-is-a-a-24-hour-virtual-concierge-service-that-smooths-the-stay-of-guests-at-hotels-raj-singh-12ceacd5cd7b
+"Ivy uses IBM’s Watson-enabled Natural Language Classifier API to read incoming guests’ texts and directs them to the correct hotel department. "
+"Ivy is a hybrid model — automated chat most of the time, but humans as backup to try to deal with fallbacks."
+Check-out by text to avoid lines
+Usually travelers don't put feedback automatically, but Ivy can ask them mid-day if everything is OK.
+"Caesars said some hotels went up 30–40 ranks on TripAdvisor — hotels normally need to invest millions of dollars to this."
+
+"We co-create the copy alongside each hotel 
+we will try to mimic the best agent but simplify for the messaging medium.
+ also texting regulations like TCPA."
+ 
+ 
+"don’t present too many options"
+1 option is good
+
+Hotel Workers made feel more human as Ivy the bot handles the repetitive robotic work (check-out, "what is the wifi").
+
+"We did IBM Watson for a while and will launch with Google’s DialogFlow — we also have internal NLP."
+
+Works with Alexa, Google
+
+The Machine Learnings newsletter by Sam DeBrule

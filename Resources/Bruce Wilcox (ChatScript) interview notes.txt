@@ -1,0 +1,60 @@
+https://chatbotsmagazine.com/rose-in-the-loebner-chatbot-competition-an-interview-with-bruce-wilcox-eac0a8b61647
+Rose in the Loebner Chatbot Competition: An Interview with Bruce Wilcox of Brillig Understanding (Part of the Bot Master Builders Series)
+A chatbot that consistently place 1st of 2nd place in many Loebner Competition (the "Turing Test") is being created by a couple, one writer, one programmer (creator of ChatScript). A lot of human testing (looking at logs) is required. (_Automated regression test_ to test rose (?))
+
+Loebner test of human knowledge: a question or remember something (based on all past questions _Chatterbox Challenge Chatbot Battles_)?
+Finals: judge can do anything.
+
+ChatScript is mostly IF/THEn rules organised into topics linked to keywords.
+Can tell agreement/disagreement, question/answer ratio.
+
+"Go to a movie or book — authors have created a character with a consistent of set of information about themselves, a worldview.  [...] The problem with CleverBot it that it’s a random mishmash. So you need to write consistent personalities."
+
+Competition is made on data persistence.
+
+_"Pronoun resolution"_ seems to be a problem?
+"There’s no ideal way to do this. Two approaches are often taken: 1) look at your own statement to figure out the pronoun, pre-path referencing. 2) post-path referencing."
+
+Topics are chosen by how many keywords overlap.
+
+There are prefabricated sequences called Gambit, that, if the user just agrees with what is said, triggers the whole sequence volley.
+Ask a question, receive answer and give your answer to the same question too.
+
+Memory-wise,
+Some questions have a fixed answer.
+Some questions can be answered only once gambits) so that the bot doesn't repeat itself. "Self-extinguishing"
+Some things can be put into a JSON structure for later use.
+The last 20 things the user said is recorded.
+
+Mangled language is dealt with with a spelling corrector.
+There are lemma patterns for variations.
+
+
+Chatscript comes with 1400 predefined concepts.
+WordNet ontology is used for noun.
+"Their noun ontology is often good, but other times it is not what I would want, and their non-noun ontologies are poor. Concepts and hierarchies work great — WordNet only works for nouns, not verbs or adverbs. It only has a single hierarchy — for dog would have canine to mammal, but not “other household pets.”"
+
+For chatscript, a concept is a set of words and phrases.
+"Fact triples, sibject-verb-object (SVO) fixed verb and ordering of fact."
+Graph queries on simple structures.
+
+
+Thoughts on neural nets:
+Google's TensorFLow, Random Decision Forests? (interviewer)
+>Small companies don’t have the data. So it’s much faster to write a pattern to cover a range of sentences, include all the synonyms. 
+
+To date, machine learning bots are not good enough. More data needed.
+
+Have a lot of testers is recommended. But more than hundred are unmanageable.
+
+Other early Loebner engines : Personality Forge, Facade
+Mitsuku (AIML) is good for stimulus/response
+"Pandorabots is not AIML, it has extensions"
+
+Other people:
+Steve Worswick "he’s stuck in the wrong pond."
+"Mark Meadows at Botanic.IO uses ChatScript to create chatbots for business "
+David Coline at Sapientx - chat with the images
+YourMD ChatScript client, "top rated for diagnostic". "Remap medical words to standard NIH terms"
+Kore.ai ChatScript enterprise bots, outperforming machine learning bots
+

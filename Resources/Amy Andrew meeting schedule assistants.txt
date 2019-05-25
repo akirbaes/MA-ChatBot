@@ -1,0 +1,8 @@
+https://chatbotsmagazine.com/amy-and-andrew-ingram-your-ai-assistants-from-x-ai-d350f5f58e43
+Schedule meetings for busy people
+
+“I can only come in person if it’s not raining that day.” Andrew doesn’t have the logic to deal with it.
+"They want to test and try out the technology. Yet our chatbot’s domain is only meeting scheduling — people want to stretch it."
+We have AI trainers to confirm that Amy’s prediction on an email is accurate — so this can lead to the 10 minute latency in her responses.
+"Our data science is via using Python, with Scala for back-end and JavaScript for the front end."
+"Amy is not a chatbot; I see her more as an Assistant."
