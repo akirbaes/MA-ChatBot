@@ -1,0 +1,30 @@
+https://www.information-age.com/history-of-the-chatbot-123479024/
+ELIZA Decision tree questions
+-Recently, Facebook Messenger, WhatsApp, LINE "really opened up their apis"
+More e-services are possible.
+-image and voice recognition technologies really improved
+Search by image
+-Better chatbot interactions, interface to behave more like expected (more "human")
+intelligence and machine learning
+
+Misconceptions:
+Still can't answer to open-ended questions
+Is supposed to solve a problem or provide a service quickly, not chat or replace humans
+
+Recently, use of chatbots internally in the entreprise has risen ("past 12-18 months" from 11 february, so 2018)
+
+Customer service always has been costly, but automating that can save $1m a year for brands like Amtrak ""
+
+Provide advice.
+
+Future:
+learn
+recognise voice and tone
+
+Examples to look out for:
+• Lego gift bot called Ralph
+• NHS for wellness
+• Visabot for immigration services
+• DoNotPay
+"— a bot designed to simplify the parking ticket appeals process. In its first 21 months the bot took on 250,000 legal cases and won 160,000 appealing over $4m of parking tickets"
+
